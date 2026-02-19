@@ -293,5 +293,44 @@ public class FLCSystem {
 
         return "Booking successful! ID: " + booking.getBookingId();
     }
+    
+    // ================= CHANGE / CANCEL GUI =================
+
+    public String changeOrCancelBookingGUI(int bookingId, int newLessonId, boolean isCancel) {
+
+        Booking booking = findBooking(bookingId);
+
+        if (booking == null) {
+            return "Booking not found!";
+        }
+
+        if (isCancel) {
+            booking.getLesson().removeBooking(booking);
+            booking.setStatus("cancelled");
+            return "Booking cancelled successfully!";
+        }
+
+        Lesson newLesson = findLesson(newLessonId);
+
+        if (newLesson == null) {
+            return "Invalid new lesson!";
+        }
+
+        if (newLesson.isFull()) {
+            return "New lesson is full!";
+        }
+
+        // Remove from old lesson
+        booking.getLesson().removeBooking(booking);
+
+        // Add to new lesson
+        newLesson.addBooking(booking);
+
+        booking.setLesson(newLesson);
+        booking.setStatus("changed");
+
+        return "Booking changed successfully!";
+    }
+
 
 }
