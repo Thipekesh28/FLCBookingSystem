@@ -1,5 +1,6 @@
 
 package com.mycompany.flcbookingsystem;
+import com.formdev.flatlaf.FlatLightLaf;
 
 /**
  *
@@ -9,11 +10,101 @@ public class MainUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainUI.class.getName());
 
-    /**
-     * Creates new form MainUI
-     */
+        
+    private void styleButton(javax.swing.JButton button) {
+
+    button.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
+    button.setFocusPainted(false);
+    button.setBackground(new java.awt.Color(52, 152, 219));
+    button.setForeground(java.awt.Color.WHITE);
+    button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }
+    
+    
+    private void addHoverEffect(javax.swing.JButton button,
+                            java.awt.Color normal,
+                            java.awt.Color hover) {
+
+    button.setBackground(normal);
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hover);
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(normal);
+        }
+    });
+}
+
+
+    
+    private void improveUI() {
+
+    setLocationRelativeTo(null);
+    setTitle("FLC Booking System");
+    setResizable(false);
+
+    // Bigger Title
+    jLabel1.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 28));
+    jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel1.setForeground(java.awt.Color.WHITE);
+
+    // Make buttons bigger
+    btnBookLesson.setPreferredSize(new java.awt.Dimension(200, 45));
+    btnChangeOrCancel.setPreferredSize(new java.awt.Dimension(200, 45));
+    btnAttendLesson.setPreferredSize(new java.awt.Dimension(200, 45));
+    btnMonthlyLessonReport.setPreferredSize(new java.awt.Dimension(200, 45));
+    BtnChamExeReport.setPreferredSize(new java.awt.Dimension(200, 45));
+    btnExit.setPreferredSize(new java.awt.Dimension(120, 45));
+
+    // Style Buttons
+    styleButton(btnBookLesson);
+    styleButton(btnChangeOrCancel);
+    styleButton(btnAttendLesson);
+    styleButton(btnMonthlyLessonReport);
+    styleButton(BtnChamExeReport);
+    styleButton(btnExit);
+
+    // Hover Effects
+    addHoverEffect(btnBookLesson,
+            new java.awt.Color(52,152,219),
+            new java.awt.Color(41,128,185));
+
+    addHoverEffect(btnChangeOrCancel,
+            new java.awt.Color(52,152,219),
+            new java.awt.Color(41,128,185));
+
+    addHoverEffect(btnAttendLesson,
+            new java.awt.Color(52,152,219),
+            new java.awt.Color(41,128,185));
+
+    addHoverEffect(btnMonthlyLessonReport,
+            new java.awt.Color(52,152,219),
+            new java.awt.Color(41,128,185));
+
+    addHoverEffect(BtnChamExeReport,
+            new java.awt.Color(52,152,219),
+            new java.awt.Color(41,128,185));
+
+    addHoverEffect(btnExit,
+            new java.awt.Color(231,76,60),
+            new java.awt.Color(192,57,43));
+
+    // Add padding
+    ((javax.swing.JComponent)getContentPane()).setBorder(
+            javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30)
+    );
+}
+
+
     public MainUI() {
+        setContentPane(new GradientPanel()); 
         initComponents();
+        improveUI();
     }
     private FLCSystem system = new FLCSystem();
     
@@ -24,34 +115,34 @@ public class MainUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnBookLesson = new javax.swing.JButton();
+        btnChangeOrCancel = new javax.swing.JButton();
+        btnAttendLesson = new javax.swing.JButton();
+        btnMonthlyLessonReport = new javax.swing.JButton();
+        BtnChamExeReport = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("FLC Booking System ");
 
-        jButton1.setText("Book Lesson");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnBookLesson.setText("Book Lesson");
+        btnBookLesson.addActionListener(this::btnBookLessonActionPerformed);
 
-        jButton2.setText("Change/Cancel Booking");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        btnChangeOrCancel.setText("Change/Cancel Booking");
+        btnChangeOrCancel.addActionListener(this::btnChangeOrCancelActionPerformed);
 
-        jButton3.setText("Attend Lesson");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        btnAttendLesson.setText("Attend Lesson");
+        btnAttendLesson.addActionListener(this::btnAttendLessonActionPerformed);
 
-        jButton4.setText("Monthly Lesson Report");
-        jButton4.addActionListener(this::jButton4ActionPerformed);
+        btnMonthlyLessonReport.setText("Monthly Lesson Report");
+        btnMonthlyLessonReport.addActionListener(this::btnMonthlyLessonReportActionPerformed);
 
-        jButton5.setText("Champion Exercise Report");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        BtnChamExeReport.setText("Champion Exercise Report");
+        BtnChamExeReport.addActionListener(this::BtnChamExeReportActionPerformed);
 
-        jButton6.setText("Exit");
-        jButton6.addActionListener(this::jButton6ActionPerformed);
+        btnExit.setText("Exit");
+        btnExit.addActionListener(this::btnExitActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,18 +156,18 @@ public class MainUI extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnChamExeReport, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                            .addComponent(btnBookLesson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAttendLesson, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(btnMonthlyLessonReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnChangeOrCancel, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
@@ -86,78 +177,87 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnBookLesson)
+                    .addComponent(btnChangeOrCancel))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnAttendLesson)
+                    .addComponent(btnMonthlyLessonReport))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(BtnChamExeReport)
+                    .addComponent(btnExit))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBookLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookLessonActionPerformed
         new BookLessonUI(system).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBookLessonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnExitActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnChangeOrCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeOrCancelActionPerformed
         new ChangeCancelUI(system).setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnChangeOrCancelActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnAttendLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttendLessonActionPerformed
         new AttendLessonUI(system).setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnAttendLessonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnMonthlyLessonReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonthlyLessonReportActionPerformed
         new MonthlyReportUI(system).setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnMonthlyLessonReportActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void BtnChamExeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnChamExeReportActionPerformed
         new ChampionReportUI(system).setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_BtnChamExeReportActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+   public static void main(String args[]) {
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MainUI().setVisible(true));
+    try {
+        com.formdev.flatlaf.FlatLightLaf.setup();
+    } catch (Exception ex) {
+        ex.printStackTrace();
     }
 
+    java.awt.EventQueue.invokeLater(() -> new MainUI().setVisible(true));
+}
+   
+   class GradientPanel extends javax.swing.JPanel {
+    @Override
+    protected void paintComponent(java.awt.Graphics g) {
+        super.paintComponent(g);
+        java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+
+        int width = getWidth();
+        int height = getHeight();
+
+        java.awt.GradientPaint gp = new java.awt.GradientPaint(
+                0, 0, new java.awt.Color(58, 123, 213),
+                0, height, new java.awt.Color(0, 210, 255)
+        );
+
+        g2d.setPaint(gp);
+        g2d.fillRect(0, 0, width, height);
+    }
+}
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton BtnChamExeReport;
+    private javax.swing.JButton btnAttendLesson;
+    private javax.swing.JButton btnBookLesson;
+    private javax.swing.JButton btnChangeOrCancel;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnMonthlyLessonReport;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
